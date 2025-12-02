@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>alok23@deeplearning.io - AI Inference Engineer</title>
+    <style>
+        :root {
+            --color-bg: #0f172a;
+            --color-surface: #1e293b;
+            --color-primary: #06b6d4;
+            --color-accent: #10b981;
+            --color-text: #e2e8f0;
+            --color-text-secondary: #94a3b8;
+            --color-border: #334155;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--color-surface) 0%, rgba(6, 182, 212, 0.1) 100%);
+            border-bottom: 1px solid var(--color-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--color-primary);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        section {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero {
+            padding: 3rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--color-text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .resume-section {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .resume-section:hover {
+            border-color: var(--color-primary);
+            box-shadow: 0 8px 32px rgba(6, 182, 212, 0.1);
+        }
+
+        .resume-section h2 {
+            color: var(--color-primary);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .resume-section h3 {
+            color: var(--color-text);
+            font-size: 1.1rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .resume-entry {
+            margin-bottom: 1.5rem;
+            border-left: 3px solid var(--color-primary);
+            padding-left: 1rem;
+        }
+
+        .resume-entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .resume-entry-title {
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        .resume-entry-date {
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .resume-entry-company {
+            color: var(--color-accent);
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .resume-entry-description {
+            color: var(--color-text-secondary);
+            margin-top: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .skill-tag {
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid var(--color-primary);
+            color: var(--color-primary);
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: var(--color-primary);
+            color: var(--color-bg);
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .link-card {
+            background: var(--color-surface);
+            border: 2px solid var(--color-border);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .link-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .link-card:hover::before {
+            left: 100%;
+        }
+
+        .link-card:hover {
+            border-color: var(--color-primary);
+            background: rgba(6, 182, 212, 0.05);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(6, 182, 212, 0.2);
+        }
+
+        .link-card h3 {
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .link-card p {
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .link-card a {
+            display: inline-block;
+            background: var(--color-primary);
+            color: var(--color-bg);
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .link-card a:hover {
+            background: var(--color-accent);
+        }
+
+        .link-card.coming-soon a {
+            background: var(--color-border);
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .link-card.coming-soon a:hover {
+            background: var(--color-border);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: var(--color-text-secondary);
+        }
+
+        .empty-state p {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            background: var(--color-surface);
+            border-top: 1px solid var(--color-border);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 4rem;
+            color: var(--color-text-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            nav {
+                padding: 1rem;
+                gap: 1rem;
+            }
+
+            main {
+                padding: 1rem;
+            }
+
+            .resume-section {
+                padding: 1.5rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#" class="logo">alok23@deeplearning.io</a>
+            <ul class="nav-links">
+                <li><a onclick="showSection('resume')" class="active">Resume</a></li>
+                <li><a onclick="showSection('projects')">Projects</a></li>
+                <li><a onclick="showSection('links')">Links</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Resume Section -->
+        <section id="resume" class="active">
+            <div class="hero">
+                <h1>Alok Ranjan Srivastava</h1>
+                <p>Senior AI Inference Engineer • Specialized in CPU architecture optimization, AI model deployment, and edge inference systems</p>
+            </div>
+
+            <!-- Experience -->
+            <div class="resume-section">
+                <h2>💼 Experience</h2>
+                
+                <div class="resume-entry">
+                    <div class="resume-entry-header">
+                        <span class="resume-entry-title">AI Inference Contractor</span>
+                        <span class="resume-entry-date">2024 - Present</span>
+                    </div>
+                    <div class="resume-entry-company">Tether.io (QVAC Project)</div>
+                    <div class="resume-entry-description">
+                        Contract-based work on AI inference optimization and deployment. Focus on efficient model execution on resource-constrained environments.
+                    </div>
+                </div>
+
+                <div class="resume-entry">
+                    <div class="resume-entry-header">
+                        <span class="resume-entry-title">Senior AI Inference Engineer</span>
+                        <span class="resume-entry-date">2018 - 2024</span>
+                    </div>
+                    <div class="resume-entry-company">AMD</div>
+                    <div class="resume-entry-description">
+                        6+ years optimizing CPU inference for deep neural networks. Led development of ZenDNN project, TensorFlow operation wrappers, and SDPA optimization. Designed and implemented DNN operation wrapper APIs for cross-platform compatibility.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skills -->
+            <div class="resume-section">
+                <h2>🔧 Technical Skills</h2>
+                
+                <h3>Languages</h3>
+                <div class="skills-grid">
+                    <div class="skill-tag">C++</div>
+                    <div class="skill-tag">Python</div>
+                    <div class="skill-tag">Java</div>
+                </div>
+
+                <h3 style="margin-top: 1.5rem;">Specializations</h3>
+                <div class="skills-grid">
+                    <div class="skill-tag">AI Inference Optimization</div>
+                    <div class="skill-tag">CPU Architecture</div>
+                    <div class="skill-tag">ML Compilers</div>
+                    <div class="skill-tag">Model Quantization</div>
+                    <div class="skill-tag">Edge Deployment</div>
+                    <div class="skill-tag">TensorFlow</div>
+                    <div class="skill-tag">LLAMA.CPP</div>
+                    <div class="skill-tag">GGUF Format</div>
+                    <div class="skill-tag">INT8/BFLOAT16</div>
+                </div>
+
+                <h3 style="margin-top: 1.5rem;">Platforms & Tools</h3>
+                <div class="skills-grid">
+                    <div class="skill-tag">Linux/Ubuntu</div>
+                    <div class="skill-tag">Windows</div>
+                    <div class="skill-tag">AWS</div>
+                    <div class="skill-tag">Git/GitHub</div>
+                    <div class="skill-tag">CI/CD</div>
+                </div>
+            </div>
+
+            <!-- Education -->
+            <div class="resume-section">
+                <h2>🎓 Education</h2>
+                
+                <div class="resume-entry">
+                    <div class="resume-entry-header">
+                        <span class="resume-entry-title">MSc Computer Science/Engineering</span>
+                        <span class="resume-entry-date">Completed</span>
+                    </div>
+                    <div class="resume-entry-description">
+                        Specialized in AI systems, compiler design, and hardware optimization. Active in research and academic pursuits.
+                    </div>
+                </div>
+
+                <div class="resume-entry">
+                    <div class="resume-entry-header">
+                        <span class="resume-entry-title">UGC NET Exam</span>
+                        <span class="resume-entry-date">In Progress</span>
+                    </div>
+                    <div class="resume-entry-description">
+                        Preparing for lecturer/academic roles in computer science education.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interests -->
+            <div class="resume-section">
+                <h2>🌱 Current Interests</h2>
+                <h3>Professional</h3>
+                <ul style="list-style: none; color: var(--color-text-secondary);">
+                    <li>• Decentralized AI systems and edge inference</li>
+                    <li>• ML compiler frameworks (TVM, MLIR, MLC)</li>
+                    <li>• Transformer architecture deep-dive</li>
+                    <li>• Hardware-software co-design</li>
+                </ul>
+                
+                <h3 style="margin-top: 1.5rem;">Entrepreneurial</h3>
+                <ul style="list-style: none; color: var(--color-text-secondary);">
+                    <li>• Building edge inference solutions (LLP registered)</li>
+                    <li>• Organic farming ventures</li>
+                    <li>• Educational content creation and consulting</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <div class="hero">
+                <h1>Projects & Work</h1>
+                <p>Coming soon - Detailed project case studies and open-source contributions</p>
+            </div>
+
+            <div class="empty-state">
+                <p>📝 Project showcase under development</p>
+                <p style="font-size: 0.9rem;">Check back soon for detailed case studies, GitHub repositories, and technical write-ups of projects I'm working on.</p>
+            </div>
+        </section>
+
+        <!-- Links Section -->
+        <section id="links">
+            <div class="hero">
+                <h1>More Content</h1>
+                <p>Connect with my other content and projects</p>
+            </div>
+
+            <div class="links-grid">
+                <div class="link-card coming-soon">
+                    <h3>📚 Technical Blog</h3>
+                    <p>Deep dives into AI inference, CPU optimization, and systems engineering</p>
+                    <a href="#" onclick="return false;">Coming Soon</a>
+                </div>
+
+                <div class="link-card coming-soon">
+                    <h3>✈️ Travel Blog</h3>
+                    <p>Exploring the world, one journey at a time</p>
+                    <a href="#" onclick="return false;">Coming Soon</a>
+                </div>
+
+                <div class="link-card">
+                    <h3>💻 GitHub</h3>
+                    <p>Check out my open-source projects and contributions</p>
+                    <a href="https://github.com/alok23" target="_blank">Visit GitHub</a>
+                </div>
+
+                <div class="link-card">
+                    <h3>🔗 LinkedIn</h3>
+                    <p>Professional experience and connections</p>
+                    <a href="https://linkedin.com" target="_blank">View Profile</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 alok23@deeplearning.io. Built with vanilla HTML, CSS, and JavaScript.</p>
+        <p style="font-size: 0.85rem; margin-top: 0.5rem;">Hosted on GitHub Pages</p>
+    </footer>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Remove active class from all nav links
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+
+            // Add active class to clicked nav link
+            event.target.classList.add('active');
+        }
+
+        // Highlight nav link on page load
+        window.addEventListener('load', () => {
+            document.querySelector('.nav-links a').classList.add('active');
+        });
+    </script>
+</body>
+</html>
